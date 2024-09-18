@@ -27,6 +27,10 @@ class Comment
     )]
     private ?\DateTimeInterface $commentDateCreated = null;
 
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Post $post = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +56,18 @@ class Comment
     public function setCommentDateCreated(\DateTimeInterface $commentDateCreated): static
     {
         $this->commentDateCreated = $commentDateCreated;
+
+        return $this;
+    }
+
+    public function getPost(): ?Post
+    {
+        return $this->post;
+    }
+
+    public function setPost(?Post $post): static
+    {
+        $this->post = $post;
 
         return $this;
     }

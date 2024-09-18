@@ -229,8 +229,26 @@ On fait la migration
 
 ### Les relations
 
+### Post -> M2M -> Section
+
 On va commencer par la relation `ManyToMany` depuis `Post` vers `Section`
 
     php bin/console make:entity Post
 
 On choisit `sections` -> `ManyToMany` -> `Section` -> `yes` -> `posts`
+
+### Post -> M2M -> Tag
+
+On va commencer par la relation `ManyToMany` depuis `Post` vers `Tag`
+
+    php bin/console make:entity Post
+
+On choisit `tags` -> `ManyToMany` -> `Tag` -> `yes` -> `posts`
+
+### Post -> One2M -> Comment
+
+On va commencer par la relation `OneToMany` depuis `Post` vers `Comment`
+
+    php bin/console make:entity Post
+
+On choisit `comments` -> `OneToMany` -> `Comment` -> `post` -> `no` -> `no`
