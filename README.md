@@ -252,3 +252,7 @@ On va commencer par la relation `OneToMany` depuis `Post` vers `Comment`
     php bin/console make:entity Post
 
 On choisit `comments` -> `OneToMany` -> `Comment` -> `post` -> `no` -> `no`
+
+## Création d'un User
+
+    php bin/console make:user
