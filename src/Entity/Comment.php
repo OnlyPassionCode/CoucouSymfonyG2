@@ -35,6 +35,11 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\Column(options: [
+        'default' => false,
+    ])]
+    private bool $commentPublished = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -84,6 +89,18 @@ class Comment
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function isCommentPublished(): bool
+    {
+        return $this->commentPublished;
+    }
+
+    public function setCommentPublished(bool $commentPublished): static
+    {
+        $this->commentPublished = $commentPublished;
 
         return $this;
     }
