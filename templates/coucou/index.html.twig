@@ -1,14 +1,13 @@
-{% extends 'coucou/template.front.html.twig' %}
+{% extends 'layouts/template.front.html.twig' %}
 
 {% block title %}
 	{{ parent() }} | {{ title }}
 {% endblock %}
 
 {% block nav %}{{ parent() }}{% endblock %}
+{% block lead %}Ceci est notre page d'accueil.{% endblock %}
 {% block main %}
 	<div class="container">
-		{% include "coucou/_menu.html.twig" %}
-		<h1>{{ title }}</h1>
 		{% if app.user %}
 			<h3>INFOS USER :</h3>
 			<p>Username: {{ app.user.username }}</p>
