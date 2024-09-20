@@ -229,7 +229,7 @@ On fait la migration
 
 ### Les relations
 
-### Post -> M2M -> Section
+#### Post -> M2M -> Section
 
 On va commencer par la relation `ManyToMany` depuis `Post` vers `Section`
 
@@ -237,17 +237,14 @@ On va commencer par la relation `ManyToMany` depuis `Post` vers `Section`
 
 On choisit `sections` -> `ManyToMany` -> `Section` -> `yes` -> `posts`
 
-### Post -> M2M -> Tag
-
-On va commencer par la relation `ManyToMany` depuis `Post` vers `Tag`
+#### Post -> M2M -> Tag
 
     php bin/console make:entity Post
 
 On choisit `tags` -> `ManyToMany` -> `Tag` -> `yes` -> `posts`
 
-### Post -> One2M -> Comment
 
-On va commencer par la relation `OneToMany` depuis `Post` vers `Comment`
+#### Post -> One2M -> Comment
 
     php bin/console make:entity Post
 
@@ -256,3 +253,18 @@ On choisit `comments` -> `OneToMany` -> `Comment` -> `post` -> `no` -> `no`
 ## Création d'un User
 
     php bin/console make:user
+
+on choisit `User` -> `yes`-> `username` -> `yes`
+
+Une table `user` est créée, avec la particularité de servir pour la connexion au site.
+
+https://symfony.com/doc/current/security.html
+
+### Relation User OneToMany Post
+
+    php bin/console make:entity User
+
+on choisit `posts` -> `OneToMany`-> `Post` -> `user` -> `no` -> `no`
+
+
+
