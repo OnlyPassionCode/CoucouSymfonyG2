@@ -9,10 +9,17 @@
             <li class="nav-item">
             <a class="nav-link" href="{{ path('coucou') }}">Accueil</a>
             </li>
+            <div class="dropdown">
+                <button class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sections
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    {% for section in sections %}
+                        <li><a class="dropdown-item" href="{{ path('section', {id: section.id}) }}">{{ section.sectionTitle }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
             {% if app.user and is_granted("ROLE_COUCOU_SUPREME") %}
-            <li class="nav-item">
-            <a class="nav-link" href="{{ path('app_admin_section_index') }}">CRUD sections</a>
-            </li>
             <li class="nav-item">
             <a class="nav-link" href="{{ path('app_admin') }}">Administrations</a>
             </li>

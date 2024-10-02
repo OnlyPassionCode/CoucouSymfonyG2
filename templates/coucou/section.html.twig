@@ -1,0 +1,25 @@
+{% extends 'layouts/template.front.html.twig' %}
+
+{% block title %}
+	{{ parent() }} | {{ title }}
+{% endblock %}
+
+{% block nav %}{{ parent() }}{% endblock %}
+{% block lead %}Ceci est la section {{ title }} - {{ section.sectionDescription }}{% endblock %}
+{% block main %}
+	<div class="container">
+		{% if app.user %}
+			<h3>INFOS USER :</h3>
+			<p>Username: {{ app.user.username }}</p>
+			<h4>SESSION INFOS :</h4>
+			{% for session in app.session.all %}
+				<pre>{{ session }}</pre>
+			{% endfor %}
+		{% endif %}
+		{% if app.debug %}
+			<h3>DEBUG :</h3>
+			<p>Request method: {{ app.request.method }}</p>
+			<p>Application Environment: {{ app.environment }}</p>
+		{% endif %}
+	</div>
+{% endblock %}

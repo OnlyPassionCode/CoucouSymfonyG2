@@ -47,7 +47,7 @@ class Post
     /**
      * @var Collection<int, Tag>
      */
-    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'posts')]
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'posts', cascade:["persist"])]
     private Collection $tags;
 
     /**
