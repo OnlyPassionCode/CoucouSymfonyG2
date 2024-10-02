@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Post;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -14,6 +16,18 @@ class PostRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Post::class);
+    }
+
+    /**
+     * 
+     * @return Post[] Returns an array of Post objects
+     */
+    public function findByTitlteDesc(): array{
+        return $this->createQueryBuilder('p')
+                    ->innerJoin(User::class, 'u', Join::WITH, 'p.user = u.id')
+                    ->orderBy("p.postTitle", "DESC")
+                    ->getQuery()
+                    ->getResult();
     }
 
 //    /**

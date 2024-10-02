@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Repository\SectionRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -15,10 +17,12 @@ class CoucouController extends AbstractController
     }
 
     #[Route('/', name: 'coucou')]
-    public function index(): Response
+    public function index(EntityManagerInterface $em): Response
     {
+        $posts = $em->getRepository(Post::class)->findByTitlteDesc();
         return $this->render('coucou/index.html.twig', [
             'title' => 'Coucou',
+            'posts' => $posts
         ]);
     }
 
